@@ -8,6 +8,8 @@ Descent식 6DOF 비행을 핵심으로 다시 만든 첫 vertical slice입니다
 3. 저장소 연결
 4. `render.yaml` 자동 인식 후 Deploy
 
+`render.yaml`은 Render 무료 플랜(`plan: free`)으로 설정되어 있습니다. 무료 웹 서비스는 일정 시간 요청이 없으면 절전되므로, 절전 후 첫 접속은 시작 시간만큼 늦을 수 있습니다.
+
 ## 로컬 실행
 ```bash
 pip install -r requirements.txt
