@@ -23,3 +23,12 @@ def test_index_and_assets_are_served():
 
 def test_unknown_path_is_404():
     assert client.get("/missing.js").status_code == 404
+
+
+def test_static_files_revalidate_after_deploys():
+    for path in ("/", "/game.js", "/style.css"):
+        response = client.get(path)
+        assert response.headers["cache-control"] == "no-cache"
+        assert response.headers["x-content-type-options"] == "nosniff"
+        cached = client.get(path, headers={"If-None-Match": response.headers["etag"]})
+        assert cached.status_code == 304
