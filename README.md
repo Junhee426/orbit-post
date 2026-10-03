@@ -17,6 +17,8 @@ uvicorn server:app --reload
 ```
 브라우저에서 http://127.0.0.1:8000 · 상태 확인 `GET /healthz` (Render health check 경로)
 
+정적 파일은 `Cache-Control: no-cache`로 제공되므로, 배포 직후에도 브라우저가 새 `game.js`를 확인합니다(바뀌지 않았으면 304).
+
 3D 엔진(three.js 0.180.0)은 jsDelivr CDN에서 불러오므로 실행 중 인터넷 연결이 필요합니다.
 
 ## 검증
@@ -29,6 +31,7 @@ GitHub Actions(`.github/workflows/ci.yml`)가 PR과 main 푸시마다 같은 검
 
 ## 플레이
 W/S 전후 추력, A/D 좌우, Q/E 롤, 마우스 Pitch/Yaw, Shift Boost, Space Brake, R 재시작(임무 완료·기체 손실 후).
+ESC로 마우스 잠금을 풀면 비행이 일시정지되고, 화면을 클릭하면 이어서 비행합니다.
 
 회전은 기체 기준 축으로 누적되므로 롤한 상태에서도 마우스 Pitch/Yaw가 조종석 기준으로 동작합니다.
 정거장 외벽, 서비스 터널 벽, 회전 팬은 충돌체이며 충돌 속도의 제곱에 비례해 선체가 손상됩니다.
